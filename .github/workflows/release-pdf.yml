@@ -101,13 +101,21 @@ jobs:
           story.append(Spacer(1, 15))
 
           # Sezione Contenuto delle Note di Rilascio
-          story.append(Paragraph("Dettaglio Modifiche (Release Notes)", heading_style))
-          # Converte le note di rilascio scritte in markdown in paragrafi puliti
-          for line in body.split('\n'):
-              if line.strip():
-                  story.append(Paragraph(line, body_style))
-              else:
-                  story.append(Spacer(1, 4))
+          story.append(Paragraph("Informazioni di Conformità", heading_style))
+
+data_iso = [
+    [Paragraph("<b>Release Notes</b>", body_style),
+     Paragraph(body, body_style)]
+]
+
+t_iso = Table(data_iso, colWidths=[150, 390])
+
+t_iso.setStyle(TableStyle([
+    ('BACKGROUND', (0,0), (0,-1), colors.HexColor('#f3f4f6')),
+    ('GRID', (0,0), (-1,-1), 0.5, colors.black),
+]))
+
+story.append(t_iso)
 
           story.append(Spacer(1, 15))
 
