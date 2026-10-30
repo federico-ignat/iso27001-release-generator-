@@ -1,0 +1,24 @@
+name: Release Test
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  create-file:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Create text file
+        run: echo "Ciao Mondo" > ciao.txt
+
+      - name: Upload file to Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: ciao.txt
